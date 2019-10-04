@@ -7,16 +7,16 @@ using System.Windows.Forms;
 
 namespace CoVuaGame
 {
-    public class StackCaro<T>
+    public class StackCoVua<T>
     {
         int top;
-        LinkedListCaro<T> list;
-        public StackCaro() {
-            list = new LinkedListCaro<T>();
+        LinkedListCoVua<T> list;
+        public StackCoVua() {
+            list = new LinkedListCoVua<T>();
             top = -1;
         }
-        public void Push(T item){
-            if (list.Add(item) == 0) {
+        public void Push(T item, int X, int Y){
+            if (list.Add(item, X, Y) == 0) {
                 MessageBox.Show("Lỗi bộ nhớ!", "Thông báo!!", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 top--;
@@ -28,9 +28,15 @@ namespace CoVuaGame
             list.Remove();
             --top;
             return item;
-        }     public T Top()  {
+        }
+        public T Top()  {
             return list.Head.Info;
         }
+
+        public int X { get { return list.Head.X; } }
+
+        public int Y { get { return list.Head.Y; } }
+
         public int Count   {  get { return top + 1; } }
     }
 }

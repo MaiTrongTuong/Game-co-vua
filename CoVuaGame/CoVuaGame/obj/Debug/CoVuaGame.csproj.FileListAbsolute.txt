@@ -1,0 +1,10 @@
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.csprojAssemblyReference.cache
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.Properties.Resources.resources
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.csproj.GenerateResource.cache
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.csproj.CoreCompileInputs.cache
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.ChessPanel.resources
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\bin\Debug\CoVuaGame.exe.config
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\bin\Debug\CoVuaGame.exe
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\bin\Debug\CoVuaGame.pdb
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.exe
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.pdb

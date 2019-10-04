@@ -44,6 +44,7 @@ namespace CoVuaGame
 
         public int buttonColor = 1;
 
+        public static StackCoVua<Button> stackButton = new StackCoVua<Button>();
         #endregion
 
         #region Initialize
@@ -66,7 +67,7 @@ namespace CoVuaGame
             {
                 buttonColor = (buttonColor == 0) ? 1 : 0;
                 Matrix.Add(new List<Button>());
-                for (int j = 0; j <= 8; j++)
+                for (int j = 0; j < 9; j++)
                 {
                     Button button = new Button()
                     {
@@ -95,7 +96,7 @@ namespace CoVuaGame
                     oldButton = button;
                 }
                 buttonColor = (buttonColor == 0) ? 1 : 0;
-                oldButton.Location = new Point(0, oldButton.Location.Y + 70);
+                oldButton.Location = new Point(0, oldButton.Location.Y + 80);
                 oldButton.Width = 0;
                 oldButton.Height = 0;
 
@@ -109,25 +110,42 @@ namespace CoVuaGame
 
             Trooper t = new Trooper();
 
-            if (button.Name != "NULL" && button.Name != "A")
+            if (button.Name != "T_K")
             {
-                sourceButton = button;
-              
-                t.CanMove(Matrix, button);
+                if (button.Name != "NULL" && button.Name != "A")
+                {
+                    while(stackButton.Count >0)
+                    {
+                        int X = stackButton.X;
+                        int Y = stackButton.Y;
+                        Button btn = stackButton.Pop();
+
+                        Matrix[X][Y].BackColor = btn.BackColor;
+                        Matrix[X][Y].Name = btn.Name;
+                        
+                    }
+                    sourceButton = button;
+
+                    t.CanMove(Matrix, button);
+                    t.CanKill(Matrix, button);
+                }
+                if (button.Name == "A")
+                {
+                    desnitationButton = button;
+                    t.Move(Matrix, sourceButton, desnitationButton);
+                }
             }
-            if(button.Name=="A")
+            else 
             {
                 desnitationButton = button;
-                t.Move(Matrix, sourceButton, desnitationButton);
+                t.Kill(Matrix, sourceButton, desnitationButton);
             }
-
-
         }
 
         public void SizePanel()
         {
-            PanelHeight = 8 * 70;
-            PanelWidth = 8 * 70;
+            PanelHeight = 80 * 9;
+            PanelWidth = 80 * 9;
 
             ChessBoard.Size = new System.Drawing.Size(PanelWidth, PanelHeight);
         }
@@ -135,6 +153,15 @@ namespace CoVuaGame
         public void LocationPanel()
         {
             ChessBoard.Location = new Point(100, 20);
+        }
+
+        private Point GetChess(List<List<Button>> Matrix, Button button)
+        {
+            int row = Convert.ToInt32(button.Tag);
+            int col = Matrix[row].IndexOf(button);
+
+            Point point = new Point(row, col);
+            return point;
         }
 
 

@@ -55,13 +55,13 @@
     </Compile>
     <Compile Include="King.cs" />
     <Compile Include="Knight.cs" />
-    <Compile Include="LinkedListCaro.cs" />
+    <Compile Include="LinkedListCoVua.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queen.cs" />
     <Compile Include="Rook.cs" />
-    <Compile Include="StackCaro.cs" />
+    <Compile Include="StackCoVua.cs" />
     <Compile Include="Trooper.cs" />
     <EmbeddedResource Include="ChessPanel.resx">
       <DependentUpon>ChessPanel.cs</DependentUpon>

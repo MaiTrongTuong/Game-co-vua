@@ -35,14 +35,14 @@
             // 
             this.PanelChessBoard.Location = new System.Drawing.Point(166, 12);
             this.PanelChessBoard.Name = "PanelChessBoard";
-            this.PanelChessBoard.Size = new System.Drawing.Size(570, 428);
+            this.PanelChessBoard.Size = new System.Drawing.Size(792, 554);
             this.PanelChessBoard.TabIndex = 0;
             // 
             // ChessPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(906, 606);
+            this.ClientSize = new System.Drawing.Size(1238, 723);
             this.Controls.Add(this.PanelChessBoard);
             this.Name = "ChessPanel";
             this.Text = "ChessPanel";

@@ -11,7 +11,7 @@ namespace CoVuaGame
 {
     class Trooper
     {
-        public int isFirstMove = 2;
+        int isFirstMove = 2;
         public Trooper()
         {
            
@@ -27,13 +27,22 @@ namespace CoVuaGame
         public void CanMove(List<List<Button>> Matrix, Button button)
         {
             Point point = GetChess(Matrix,button);
-
+            if(point.X==1 || point.X ==6)
+            {
+                isFirstMove = 2;
+            }
+            else
+            {
+                isFirstMove = 1;
+            }
             if(Matrix[point.X][point.Y].Name=="T_W")
             {
-                for (int i = point.X; i >=point.X- isFirstMove; i--)
+                for (int i = point.X; i >=point.X-isFirstMove ; i--)
                 {
                     if (Matrix[i][point.Y].Name == "NULL")
                     {
+                        Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
+
                         Matrix[i][point.Y].BackColor = Color.LightBlue;
                         Matrix[i][point.Y].Name = "A";
                     }
@@ -41,16 +50,18 @@ namespace CoVuaGame
             }
             else if(Matrix[point.X][point.Y].Name == "T_B")
             {
-                for (int i = point.X; i <= point.X+isFirstMove ; i++)
+                for (int i = point.X; i <= point.X+ isFirstMove; i++)
                 {
                     if (Matrix[i][point.Y].Name == "NULL")
                     {
+                        Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
+
                         Matrix[i][point.Y].BackColor = Color.LightBlue;
                         Matrix[i][point.Y].Name = "A";
                     }
                 }
             }
-            isFirstMove = 1;
+           
         }
         public void Move(List<List<Button>> Matrix, Button source, Button Desnitation)
         {
@@ -62,6 +73,53 @@ namespace CoVuaGame
 
             Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
 
+            Matrix[pointSource.X][pointSource.Y].Name = "NULL";
+        }
+        public void CanKill(List<List<Button>> Matrix, Button source)
+        {
+            Point pointSource = GetChess(Matrix, source);
+            if (Matrix[pointSource.X][pointSource.Y].Name == "T_W")
+            {
+                if (pointSource.Y - 1 >= 0)
+                {
+                    if (Matrix[pointSource.X - 1][pointSource.Y - 1].BackgroundImage != null)
+                    {
+                        Matrix[pointSource.X - 1][pointSource.Y - 1].BackColor = Color.Red;
+                        Matrix[pointSource.X - 1][pointSource.Y - 1].Name = "T_K";
+                    }
+                }
+                if (Matrix[pointSource.X - 1][pointSource.Y + 1].BackgroundImage != null)
+                {
+                    Matrix[pointSource.X - 1][pointSource.Y + 1].BackColor = Color.Red;
+                    Matrix[pointSource.X - 1][pointSource.Y + 1].Name = "T_K";
+                }
+            }
+            if (Matrix[pointSource.X][pointSource.Y].Name == "T_B")
+            {
+                if (pointSource.Y - 1 >= 0)
+                {
+                    if (Matrix[pointSource.X + 1][pointSource.Y - 1].BackgroundImage != null)
+                    {
+                        Matrix[pointSource.X + 1][pointSource.Y - 1].BackColor = Color.Red;
+                        Matrix[pointSource.X + 1][pointSource.Y - 1].Name = "T_K";
+                    }
+                }
+                if (Matrix[pointSource.X + 1][pointSource.Y + 1].BackgroundImage != null)
+                {
+                    Matrix[pointSource.X + 1][pointSource.Y + 1].BackColor = Color.Red;
+                    Matrix[pointSource.X + 1][pointSource.Y + 1].Name = "T_K";
+                }
+            }
+        }
+        public void Kill(List<List<Button>> Matrix, Button btnSource, Button btnDesnitation)
+        {
+            Point pointSource = GetChess(Matrix, btnSource);
+            Point pointDesnitation = GetChess(Matrix, btnDesnitation);
+
+            Matrix[pointDesnitation.X][pointDesnitation.Y].BackgroundImage = Matrix[pointSource.X][pointSource.Y].BackgroundImage;
+            Matrix[pointDesnitation.X][pointDesnitation.Y].Name = Matrix[pointSource.X][pointSource.Y].Name;
+
+            Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
             Matrix[pointSource.X][pointSource.Y].Name = "NULL";
         }
 
