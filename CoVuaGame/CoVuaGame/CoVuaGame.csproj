@@ -53,6 +53,7 @@
     <Compile Include="ChessPanel.Designer.cs">
       <DependentUpon>ChessPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeneralMethods.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="LinkedListCoVua.cs" />

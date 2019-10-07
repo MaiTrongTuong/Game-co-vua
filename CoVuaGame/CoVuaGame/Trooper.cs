@@ -9,35 +9,25 @@ using System.Windows.Forms;
 
 namespace CoVuaGame
 {
-    class Trooper
+    class Trooper:GeneralMethods
     {
         int isFirstMove = 2;
         public Trooper()
         {
            
+           
         }
-        private Point GetChess(List<List<Button>> Matrix, Button button)
-        {
-            int row = Convert.ToInt32(button.Tag);
-            int col = Matrix[row].IndexOf(button);
 
-            Point point = new Point(row, col);
-            return point;
-        }
-        public void CanMove(List<List<Button>> Matrix, Button button)
+        public void CanMove(List<List<Button>> Matrix, Point point)
         {
-            Point point = GetChess(Matrix,button);
-            if(point.X==1 || point.X ==6)
-            {
+            if ((point.X == 6 && Matrix[point.X][point.Y].Name == "W_T")|| (point.X == 1 && Matrix[point.X][point.Y].Name == "B_T"))
                 isFirstMove = 2;
-            }
             else
-            {
                 isFirstMove = 1;
-            }
-            if(Matrix[point.X][point.Y].Name=="T_W")
+
+            if(Matrix[point.X][point.Y].Name=="W_T")
             {
-                for (int i = point.X; i >=point.X-isFirstMove ; i--)
+                for (int i = point.X-1; i>=point.X-isFirstMove; i--)
                 {
                     if (Matrix[i][point.Y].Name == "NULL")
                     {
@@ -46,11 +36,13 @@ namespace CoVuaGame
                         Matrix[i][point.Y].BackColor = Color.LightBlue;
                         Matrix[i][point.Y].Name = "A";
                     }
+                    else
+                        break;
                 }
             }
-            else if(Matrix[point.X][point.Y].Name == "T_B")
+            else if(Matrix[point.X][point.Y].Name == "B_T")
             {
-                for (int i = point.X; i <= point.X+ isFirstMove; i++)
+                for (int i = point.X +1 ; i <= point.X+ isFirstMove; i++)
                 {
                     if (Matrix[i][point.Y].Name == "NULL")
                     {
@@ -59,68 +51,57 @@ namespace CoVuaGame
                         Matrix[i][point.Y].BackColor = Color.LightBlue;
                         Matrix[i][point.Y].Name = "A";
                     }
+                    else break;
                 }
             }
            
         }
-        public void Move(List<List<Button>> Matrix, Button source, Button Desnitation)
+        public void CanKill(List<List<Button>> Matrix, Point pointSource)
         {
-            Point pointSource = GetChess(Matrix, source);
-            Point pointDesnitation = GetChess(Matrix, Desnitation);
-
-            Matrix[pointDesnitation.X][pointDesnitation.Y].BackgroundImage = Matrix[pointSource.X][pointSource.Y].BackgroundImage;
-            Matrix[pointDesnitation.X][pointDesnitation.Y].Name = Matrix[pointSource.X][pointSource.Y].Name;
-
-            Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
-
-            Matrix[pointSource.X][pointSource.Y].Name = "NULL";
-        }
-        public void CanKill(List<List<Button>> Matrix, Button source)
-        {
-            Point pointSource = GetChess(Matrix, source);
-            if (Matrix[pointSource.X][pointSource.Y].Name == "T_W")
+            if (Matrix[pointSource.X][pointSource.Y].Name == "W_T")
             {
                 if (pointSource.Y - 1 >= 0)
                 {
                     if (Matrix[pointSource.X - 1][pointSource.Y - 1].BackgroundImage != null)
                     {
-                        Matrix[pointSource.X - 1][pointSource.Y - 1].BackColor = Color.Red;
-                        Matrix[pointSource.X - 1][pointSource.Y - 1].Name = "T_K";
+                        if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X - 1][pointSource.Y - 1].Name) == false)
+                        {
+                            Matrix[pointSource.X - 1][pointSource.Y - 1].BackColor = Color.Red;
+                            Matrix[pointSource.X - 1][pointSource.Y - 1].Name = "K";
+                        }
                     }
                 }
                 if (Matrix[pointSource.X - 1][pointSource.Y + 1].BackgroundImage != null)
                 {
-                    Matrix[pointSource.X - 1][pointSource.Y + 1].BackColor = Color.Red;
-                    Matrix[pointSource.X - 1][pointSource.Y + 1].Name = "T_K";
+                    if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X - 1][pointSource.Y + 1].Name) == false)
+                    {
+                        Matrix[pointSource.X - 1][pointSource.Y + 1].BackColor = Color.Red;
+                        Matrix[pointSource.X - 1][pointSource.Y + 1].Name = "K";
+                    }
                 }
             }
-            if (Matrix[pointSource.X][pointSource.Y].Name == "T_B")
+            if (Matrix[pointSource.X][pointSource.Y].Name == "B_T")
             {
                 if (pointSource.Y - 1 >= 0)
                 {
                     if (Matrix[pointSource.X + 1][pointSource.Y - 1].BackgroundImage != null)
                     {
-                        Matrix[pointSource.X + 1][pointSource.Y - 1].BackColor = Color.Red;
-                        Matrix[pointSource.X + 1][pointSource.Y - 1].Name = "T_K";
+                        if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X + 1][pointSource.Y - 1].Name) == false)
+                        {
+                            Matrix[pointSource.X + 1][pointSource.Y - 1].BackColor = Color.Red;
+                            Matrix[pointSource.X + 1][pointSource.Y - 1].Name = "K";
+                        }
                     }
                 }
                 if (Matrix[pointSource.X + 1][pointSource.Y + 1].BackgroundImage != null)
                 {
-                    Matrix[pointSource.X + 1][pointSource.Y + 1].BackColor = Color.Red;
-                    Matrix[pointSource.X + 1][pointSource.Y + 1].Name = "T_K";
+                    if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X + 1][pointSource.Y + 1].Name) == false)
+                    {
+                        Matrix[pointSource.X + 1][pointSource.Y + 1].BackColor = Color.Red;
+                        Matrix[pointSource.X + 1][pointSource.Y + 1].Name = "K";
+                    }
                 }
             }
-        }
-        public void Kill(List<List<Button>> Matrix, Button btnSource, Button btnDesnitation)
-        {
-            Point pointSource = GetChess(Matrix, btnSource);
-            Point pointDesnitation = GetChess(Matrix, btnDesnitation);
-
-            Matrix[pointDesnitation.X][pointDesnitation.Y].BackgroundImage = Matrix[pointSource.X][pointSource.Y].BackgroundImage;
-            Matrix[pointDesnitation.X][pointDesnitation.Y].Name = Matrix[pointSource.X][pointSource.Y].Name;
-
-            Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
-            Matrix[pointSource.X][pointSource.Y].Name = "NULL";
         }
 
     }

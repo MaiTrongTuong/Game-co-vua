@@ -104,52 +104,6 @@ namespace CoVuaGame
             }
         }
 
-        private void button_Click(object sender, EventArgs e)
-        {
-            Button button = sender as Button;
-
-            Trooper t = new Trooper();
-
-            if (button.Name != "T_K")
-            {
-                if (button.Name != "NULL" && button.Name != "A")
-                {
-                    while(stackButton.Count >0)
-                    {
-                        int X = stackButton.X;
-                        int Y = stackButton.Y;
-                        Button btn = stackButton.Pop();
-
-                        Matrix[X][Y].BackColor = btn.BackColor;
-                        Matrix[X][Y].Name = btn.Name;
-                        
-                    }
-                    sourceButton = button;
-
-                    t.CanMove(Matrix, button);
-                    t.CanKill(Matrix, button);
-                }
-                if (button.Name == "A")
-                {
-                    desnitationButton = button;
-                    t.Move(Matrix, sourceButton, desnitationButton);
-                }
-            }
-            else 
-            {
-                desnitationButton = button;
-                t.Kill(Matrix, sourceButton, desnitationButton);
-            }
-        }
-
-        public void SizePanel()
-        {
-            PanelHeight = 80 * 9;
-            PanelWidth = 80 * 9;
-
-            ChessBoard.Size = new System.Drawing.Size(PanelWidth, PanelHeight);
-        }
-
         public void LocationPanel()
         {
             ChessBoard.Location = new Point(100, 20);
@@ -164,6 +118,14 @@ namespace CoVuaGame
             return point;
         }
 
+        public void SizePanel()
+        {
+            PanelHeight = 80 * 9;
+            PanelWidth = 80 * 9;
+
+            ChessBoard.Size = new System.Drawing.Size(PanelWidth, PanelHeight);
+        }
+
 
         public void SetImage(Button button, int i, int j)
         {
@@ -173,11 +135,11 @@ namespace CoVuaGame
                 {
                     case 0:
                         button.BackgroundImage = Properties.Resources.Rook;
-                        button.Name = "R_B";
+                        button.Name = "B_R";
                         break;
                     case 1:
                         button.BackgroundImage = Properties.Resources.Knight;
-                        button.Name = "N_B";
+                        button.Name = "B_N";
                         break;
                     case 2:
                         button.BackgroundImage = Properties.Resources.Bishop;
@@ -185,11 +147,11 @@ namespace CoVuaGame
                         break;
                     case 3:
                         button.BackgroundImage = Properties.Resources.Queen;
-                        button.Name = "Q_B";
+                        button.Name = "B_Q";
                         break;
                     case 4:
                         button.BackgroundImage = Properties.Resources.King;
-                        button.Name = "K_B";
+                        button.Name = "B_K";
                         break;
                     case 5:
                         button.BackgroundImage = Properties.Resources.Bishop;
@@ -197,12 +159,12 @@ namespace CoVuaGame
                         break;
                     case 6:
                         button.BackgroundImage = Properties.Resources.Knight;
-                        button.Name = "N_B";
+                        button.Name = "B_N";
                         break;
 
                     case 7:
                         button.BackgroundImage = Properties.Resources.Rook;
-                        button.Name = "R_B";
+                        button.Name = "B_R";
                         break;
                 }
             }
@@ -212,54 +174,145 @@ namespace CoVuaGame
                 {
                     case 0:
                         button.BackgroundImage = Properties.Resources.RookWhite;
-                        button.Name = "R_W";
+                        button.Name = "W_R";
                         break;
                     case 1:
                         button.BackgroundImage = Properties.Resources.KnightWhite;
-                        button.Name = "N_W";
+                        button.Name = "W_N";
                         break;
                     case 2:
                         button.BackgroundImage = Properties.Resources.BishopWhite;
-                        button.Name = "B_W";
+                        button.Name = "W_B";
                         break;
                     case 3:
                         button.BackgroundImage = Properties.Resources.QueenWhite;
-                        button.Name = "Q_W";
+                        button.Name = "W_Q";
                         break;
                     case 4:
                         button.BackgroundImage = Properties.Resources.KingWhite;
-                        button.Name = "K_W";
+                        button.Name = "W_K";
                         break;
                     case 5:
                         button.BackgroundImage = Properties.Resources.BishopWhite;
-                        button.Name = "B_W";
+                        button.Name = "W_B";
                         break;
                     case 6:
                         button.BackgroundImage = Properties.Resources.KnightWhite;
-                        button.Name = "N_W";
+                        button.Name = "W_N";
                         break;
 
                     case 7:
                         button.BackgroundImage = Properties.Resources.RookWhite;
-                        button.Name = "R_W";
+                        button.Name = "W_R";
                         break;
                 }
             }
-            else if(i==1)
+            else if (i == 1)
             {
                 button.BackgroundImage = Properties.Resources.Trooper;
-                button.Name = "T_B";
+                button.Name = "B_T";
             }
-            else if(i==6)
+            else if (i == 6)
             {
                 button.BackgroundImage = Properties.Resources.TrooperWhite;
-                button.Name = "T_W";
+                button.Name = "W_T";
             }
             else
             {
                 button.Name = "NULL";
             }
         }
+
+        public void Move(List<List<Button>> Matrix, Button source, Button Desnitation)
+        {
+            Point pointSource = GetChess(Matrix, source);
+            Point pointDesnitation = GetChess(Matrix, Desnitation);
+
+            Matrix[pointDesnitation.X][pointDesnitation.Y].BackgroundImage = Matrix[pointSource.X][pointSource.Y].BackgroundImage;
+            Matrix[pointDesnitation.X][pointDesnitation.Y].Name = Matrix[pointSource.X][pointSource.Y].Name;
+
+            Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
+            Matrix[pointSource.X][pointSource.Y].Name = "NULL";
+        }
+
+        public void Kill(List<List<Button>> Matrix, Button btnSource, Button btnDesnitation)
+        {
+            Point pointSource = GetChess(Matrix, btnSource);
+            Point pointDesnitation = GetChess(Matrix, btnDesnitation);
+
+            Matrix[pointDesnitation.X][pointDesnitation.Y].BackgroundImage = Matrix[pointSource.X][pointSource.Y].BackgroundImage;
+            Matrix[pointDesnitation.X][pointDesnitation.Y].Name = Matrix[pointSource.X][pointSource.Y].Name;
+
+            Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
+            Matrix[pointSource.X][pointSource.Y].Name = "NULL";
+        }
+
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+
+            string btnName = button.Name;
+
+            MoveButton(button, btnName);
+        }
+ 
+        public void MoveButton(Button button,string NameButton)
+        {
+            switch(NameButton)
+            {
+                case "W_T":
+                case "B_T":
+                    Trooper t = new Trooper();
+                    while (stackButton.Count > 0)
+                    {
+                        int X = stackButton.X;
+                        int Y = stackButton.Y;
+                        Button btn = stackButton.Pop();
+
+                        Matrix[X][Y].BackColor = btn.BackColor;
+                        Matrix[X][Y].Name = btn.Name;
+
+                    }
+                    sourceButton = button;
+
+                    Point pointTrooper = GetChess(Matrix, button);
+                    if (pointTrooper.X == 0 || pointTrooper.X == 7)
+                        break;
+                    t.CanMove(Matrix, pointTrooper);
+                    t.CanKill(Matrix, pointTrooper);
+                    break;
+                case "B_R":
+                case "W_R":
+                    Rook r = new Rook();
+                    while (stackButton.Count > 0)
+                    {
+                        int X = stackButton.X;
+                        int Y = stackButton.Y;
+                        Button btn = stackButton.Pop();
+
+                        Matrix[X][Y].BackColor = btn.BackColor;
+                        Matrix[X][Y].Name = btn.Name;
+
+                    }
+                    sourceButton = button;
+
+                    Point pointRook = GetChess(Matrix, button);
+                    r.CanMove(Matrix, pointRook);
+                   // r.CanKill(Matrix, pointRook);
+                    break;
+                case "A":
+                    desnitationButton = button;
+                    Move(Matrix, sourceButton, desnitationButton);
+                    break;
+                case "K":
+                    desnitationButton = button;
+                    Kill(Matrix, sourceButton, desnitationButton);
+                    break;
+                
+            }
+        }
+
             #endregion
     }
 }
