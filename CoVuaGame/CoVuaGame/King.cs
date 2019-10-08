@@ -14,14 +14,14 @@ namespace CoVuaGame
         {
             for (int i = 1; i >=-1; i--)
             {
-                for (int j = 1; j >-1; j--)
+                for (int j = 1; j >=-1; j--)
                 {
                     if(point.X+i<=7 && point.Y+j<=7 && point.X+i>=0 && point.Y+j>=0)
                     {
                         if(Matrix[point.X+i][point.Y+j].Name=="NULL")
                         {
-                            Matrix[i][point.Y].BackColor = Color.LightBlue;
-                            Matrix[i][point.Y].Name = "A";
+                            Matrix[point.X + i][point.Y + j].BackColor = Color.LightBlue;
+                            Matrix[point.X + i][point.Y + j].Name = "A";
                         }
                     }
                   
