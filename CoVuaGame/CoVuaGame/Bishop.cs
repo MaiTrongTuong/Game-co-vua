@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace CoVuaGame
 {
-    class Bishop : GeneralMethods
+    public class Bishop : GeneralMethods
     {
         public void CanMove(List<List<Button>> Matrix, Point point)
         {
@@ -63,52 +63,3 @@ namespace CoVuaGame
         }
     }
 }
-/*
-                int i = 1;
-                int j = 1;
-                while (point.Y - j >= 0 && point.X - i >= 0)// sang trai tren
-                {
-                    if (Matrix[point.X - i][point.Y - j].Name == "NULL")
-                    {
-                        Manager.stackButton.Push(Matrix[point.X - i][point.Y - j], point.X - i, point.Y - j);
-                        Matrix[point.X - i][point.Y - j].BackColor = Color.LightBlue;
-                        Matrix[point.X - i][point.Y - j].Name = "A";
-                    }
-                    i++;
-                    j++;
-                }
-                while (point.Y - j >= 0 && point.X + i <= 7)//trai duoi
-                {
-                    if (Matrix[point.X + i][point.Y - j].Name == "NULL")
-                    {
-                        Manager.stackButton.Push(Matrix[point.X + i][point.Y - j], point.X + i, point.Y - j);
-                        Matrix[point.X + i][point.Y - j].BackColor = Color.LightBlue;
-                        Matrix[point.X + i][point.Y - j].Name = "A";
-                    }
-                    i++;
-                    j++;
-                }
-                
-                while(point.Y+j<=7&&point.X-i>=0)//phai tren
-                {
-                    if (Matrix[point.X - i][point.Y + j].Name == "NULL")
-                    {
-                        Manager.stackButton.Push(Matrix[point.X - i][point.Y + j], point.X - i, point.Y + j);
-                        Matrix[point.X - i][point.Y + j].BackColor = Color.LightBlue;
-                        Matrix[point.X - i][point.Y + j].Name = "A";
-                    }
-                    i++;
-                    j++;
-                    
-                }
-                while(point.Y+j<=7&&point.X+i<=7)//phai duoi
-                {
-                    if (Matrix[point.X + i][point.Y + j].Name == "NULL")
-                    {
-                        Manager.stackButton.Push(Matrix[point.X + i][point.Y + j], point.X + i, point.Y + j);
-                        Matrix[point.X + i][point.Y + j].BackColor = Color.LightBlue;
-                        Matrix[point.X + i][point.Y + j].Name = "A";
-                    }
-                    i++;
-                    j++;
-                }*/

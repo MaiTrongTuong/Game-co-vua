@@ -12,8 +12,6 @@ namespace CoVuaGame
     { 
         public void CanMove(List<List<Button>> Matrix, Point point)
         {
-            if (Matrix[point.X][point.Y].Name == "W_R"||Matrix[point.X][point.Y].Name == "B_R")
-            {
                 for (int i = point.X; i >= 0; i--)//R_W di len
                 {
                     if (Matrix[i][point.Y].Name == "NULL")
@@ -55,9 +53,6 @@ namespace CoVuaGame
                         Matrix[point.X][j].Name = "A";
                     }
                 }
-            }
-            
-
         }
 
     }

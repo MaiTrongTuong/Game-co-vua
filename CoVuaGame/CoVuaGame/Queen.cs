@@ -12,77 +12,97 @@ namespace CoVuaGame
     {
         public void CanMove(List<List<Button>> Matrix, Point point)
         {
-            if (Matrix[point.X][point.Y].Name == "B_Q" || Matrix[point.X][point.Y].Name == "W_Q")
+            int i;
+            //cheo chinh
+            for (i = point.X; i >= 0; i--)//R_W di len
             {
-                    if (point.X - 1 >= 0)
+                if (Matrix[i][point.Y].Name == "NULL")
+                {
+                    Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
+
+                    Matrix[i][point.Y].BackColor = Color.LightBlue;
+                    Matrix[i][point.Y].Name = "A";
+                }
+
+            }
+            for (i = point.X; i <= 7; i++)//R_W di lui
+            {
+                if (Matrix[i][point.Y].Name == "NULL")
+                {
+                    Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
+                    Matrix[i][point.Y].BackColor = Color.LightBlue;
+                    Matrix[i][point.Y].Name = "A";
+                }
+            }
+            for (int j = point.Y; j >= 0; j--)//R_W di sang trai
+            {
+                if (Matrix[point.X][j].Name == "NULL")
+                {
+                    Manager.stackButton.Push(Matrix[point.X][j], point.X, j);
+
+                    Matrix[point.X][j].BackColor = Color.LightBlue;
+                    Matrix[point.X][j].Name = "A";
+                }
+
+            }
+            for (int j = point.Y; j <= 7; j++)//R_W di sang phai
+            {
+                if (Matrix[point.X][j].Name == "NULL")
+                {
+                    Manager.stackButton.Push(Matrix[point.X][j], point.X, j);
+
+                    Matrix[point.X][j].BackColor = Color.LightBlue;
+                    Matrix[point.X][j].Name = "A";
+                }
+            }
+            i = 1;
+            while (i <= 7)// sang trai tren
+            {
+                if (point.X + i <= 7 && point.Y + i <= 7)
+                {
+                    if (Matrix[point.X + i][point.Y + i].Name == "NULL")
                     {
-                        for (int i = point.X - 1; i >= point.X - 1; i--)//tren
-                        {
-                            if (Matrix[i][point.Y].Name == "NULL")
-                            {
-                                Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
+                        //Manager.stackButton.Push(Matrix[point.X + i][point.Y + i], point.X + i, point.Y + i);
 
-                                Matrix[i][point.Y].BackColor = Color.LightBlue;
-                                Matrix[i][point.Y].Name = "A";
-                            }
-                            if (Matrix[i][point.Y - 1].Name == "NULL")
-                            {
-                                Manager.stackButton.Push(Matrix[i][point.Y - 1], i, point.Y - 1);
+                        Matrix[point.X + i][point.Y + i].BackColor = Color.LightBlue;
+                        Matrix[point.X + i][point.Y + i].Name = "A";
 
-                                Matrix[i][point.Y - 1].BackColor = Color.LightBlue;
-                                Matrix[i][point.Y - 1].Name = "A";
-                            }
-                            if (Matrix[i][point.Y + 1].Name == "NULL")
-                            {
-                                Manager.stackButton.Push(Matrix[i][point.Y + 1], i, point.Y + 1);
-
-                                Matrix[i][point.Y + 1].BackColor = Color.LightBlue;
-                                Matrix[i][point.Y + 1].Name = "A";
-                            }
-                        }
-                    }
-                    if (Matrix[point.X][point.Y - 1].Name == "NULL")
-                    {
-                        Manager.stackButton.Push(Matrix[point.X][point.Y - 1], point.X, point.Y - 1);
-
-                        Matrix[point.X][point.Y - 1].BackColor = Color.LightBlue;
-                        Matrix[point.X][point.Y - 1].Name = "A";
-                    }
-                    if (Matrix[point.X][point.Y + 1].Name == "NULL")
-                    {
-                        Manager.stackButton.Push(Matrix[point.X][point.Y + 1], point.X, point.Y + 1);
-
-                        Matrix[point.X][point.Y + 1].BackColor = Color.LightBlue;
-                        Matrix[point.X][point.Y + 1].Name = "A";
-                    }
-                    if (point.X + 1 <= 7)
-                    {
-                        for (int i = point.X + 1; i <= point.X + 1; i++)//tren
-                        {
-                            if (Matrix[i][point.Y].Name == "NULL")
-                            {
-                                Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
-
-                                Matrix[i][point.Y].BackColor = Color.LightBlue;
-                                Matrix[i][point.Y].Name = "A";
-                            }
-                            if (Matrix[i][point.Y - 1].Name == "NULL")
-                            {
-                                Manager.stackButton.Push(Matrix[i][point.Y - 1], i, point.Y - 1);
-
-                                Matrix[i][point.Y - 1].BackColor = Color.LightBlue;
-                                Matrix[i][point.Y - 1].Name = "A";
-                            }
-                            if (Matrix[i][point.Y + 1].Name == "NULL")
-                            {
-                                Manager.stackButton.Push(Matrix[i][point.Y + 1], i, point.Y + 1);
-
-                                Matrix[i][point.Y + 1].BackColor = Color.LightBlue;
-                                Matrix[i][point.Y + 1].Name = "A";
-                            }
-                        }
                     }
                 }
+                if (point.X - i >= 0 && point.Y - i >= 0)
+                {
+                    if (Matrix[point.X - i][point.Y - i].Name == "NULL")
+                    {
+                        //Manager.stackButton.Push(Matrix[point.X - i][point.Y - i], point.X - i, point.Y - i);
+
+                        Matrix[point.X - i][point.Y - i].BackColor = Color.LightBlue;
+                        Matrix[point.X - i][point.Y - i].Name = "A";
+
+                    }
+                }
+                if (point.X + i <= 7 && point.Y - i >= 0)
+                {
+                    if (Matrix[point.X + i][point.Y - i].Name == "NULL")
+                    {
+                        //Manager.stackButton.Push(Matrix[point.X + i][point.Y - i], point.X + i, point.Y - i);
+
+                        Matrix[point.X + i][point.Y - i].BackColor = Color.LightBlue;
+                        Matrix[point.X + i][point.Y - i].Name = "A";
+                    }
+                }
+                if (point.X - i >= 0 && point.Y + i <= 7)
+                {
+                    if (Matrix[point.X - i][point.Y + i].Name == "NULL")
+                    {
+                        //Manager.stackButton.Push(Matrix[point.X - i][point.Y + i], point.X - i, point.Y + i);
+
+                        Matrix[point.X - i][point.Y + i].BackColor = Color.LightBlue;
+                        Matrix[point.X - i][point.Y + i].Name = "A";
+                    }
+                }
+                i++;
+            }
+
         }
-        }
+    }
 }

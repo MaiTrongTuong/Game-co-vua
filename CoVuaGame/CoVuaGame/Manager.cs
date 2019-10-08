@@ -357,7 +357,24 @@ namespace CoVuaGame
                     q.CanMove(Matrix, pointQueen);
                     // r.CanKill(Matrix, pointRook);
                     break;
+                case "W_N":
+                case "B_N":
+                    Knight n = new Knight();
+                    //while (stackButton.Count > 0)
+                    //{
+                    //    int X = stackButton.X;
+                    //    int Y = stackButton.Y;
+                    //    Button btn = stackButton.Pop();
 
+                    //    Matrix[X][Y].BackColor = btn.BackColor;
+                    //    Matrix[X][Y].Name = btn.Name;
+
+                    //}
+                    sourceButton = button;
+                    Point pointKnight = GetChess(Matrix, button);
+                    n.CanMove(Matrix, pointKnight);
+                    // r.CanKill(Matrix, pointRook);
+                    break;
 
                 case "A":
                     desnitationButton = button;
