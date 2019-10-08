@@ -12,7 +12,7 @@ namespace CoVuaGame
     { 
         public void CanMove(List<List<Button>> Matrix, Point point)
         {
-            if (Matrix[point.X][point.Y].Name == "W_R"|| Matrix[point.X][point.Y].Name == "B_R")
+            if (Matrix[point.X][point.Y].Name == "W_R"||Matrix[point.X][point.Y].Name == "B_R")
             {
                 for (int i = point.X; i >= 0; i--)//R_W di len
                 {
@@ -22,12 +22,6 @@ namespace CoVuaGame
 
                         Matrix[i][point.Y].BackColor = Color.LightBlue;
                         Matrix[i][point.Y].Name = "A";
-                    }
-                    else if(IsTeamMate(Matrix[point.X][point.Y].Name, Matrix[i][point.Y].Name)==false)
-                    {
-                        Matrix[i][point.Y].BackColor = Color.Red;
-                        Matrix[i][point.Y].Name = "K";
-                        i = -1;
                     }
                     
                 }

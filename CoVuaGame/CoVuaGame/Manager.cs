@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace CoVuaGame
 {
     public class Manager
@@ -256,7 +255,6 @@ namespace CoVuaGame
 
             MoveButton(button, btnName);
         }
- 
         public void MoveButton(Button button,string NameButton)
         {
             switch(NameButton)
@@ -282,9 +280,68 @@ namespace CoVuaGame
                     t.CanMove(Matrix, pointTrooper);
                     t.CanKill(Matrix, pointTrooper);
                     break;
+
                 case "B_R":
                 case "W_R":
                     Rook r = new Rook();
+                    //while (stackButton.Count > 0)
+                    //{
+                    //    int X = stackButton.X;
+                    //    int Y = stackButton.Y;
+                    //    Button btn = stackButton.Pop();
+
+                    //    Matrix[X][Y].BackColor = btn.BackColor;
+                    //    Matrix[X][Y].Name = btn.Name;
+
+                    //}
+                    sourceButton = button;
+
+                    Point pointRook = GetChess(Matrix, button);
+                    r.CanMove(Matrix, pointRook);
+                   // r.CanKill(Matrix, pointRook);
+                    break;
+
+                case "W_B":
+                case "B_B":
+                    Bishop b = new Bishop();
+                    //while (stackButton.Count > 0)
+                    //{
+                    //    int X = stackButton.X;
+                    //    int Y = stackButton.Y;
+                    //    Button btn = stackButton.Pop();
+
+                    //    Matrix[X][Y].BackColor = btn.BackColor;
+                    //    Matrix[X][Y].Name = btn.Name;
+
+                    //}
+                    sourceButton = button;
+                    Point pointBishop = GetChess(Matrix, button);
+                    b.CanMove(Matrix, pointBishop);
+                    // r.CanKill(Matrix, pointRook);
+                    break;
+
+                case "W_K":
+                case "B_K":
+                    King k = new King();
+                    //while (stackButton.Count > 0)
+                    //{
+                    //    int X = stackButton.X;
+                    //    int Y = stackButton.Y;
+                    //    Button btn = stackButton.Pop();
+
+                    //    Matrix[X][Y].BackColor = btn.BackColor;
+                    //    Matrix[X][Y].Name = btn.Name;
+
+                    //}
+                    sourceButton = button;
+                    Point pointKing = GetChess(Matrix, button);
+                    k.CanMove(Matrix, pointKing);
+                    // r.CanKill(Matrix, pointRook);
+                    break;
+
+                case "W_Q":
+                case "B_Q":
+                    Queen q = new Queen();
                     while (stackButton.Count > 0)
                     {
                         int X = stackButton.X;
@@ -296,11 +353,12 @@ namespace CoVuaGame
 
                     }
                     sourceButton = button;
-
-                    Point pointRook = GetChess(Matrix, button);
-                    r.CanMove(Matrix, pointRook);
-                   // r.CanKill(Matrix, pointRook);
+                    Point pointQueen = GetChess(Matrix, button);
+                    q.CanMove(Matrix, pointQueen);
+                    // r.CanKill(Matrix, pointRook);
                     break;
+
+
                 case "A":
                     desnitationButton = button;
                     Move(Matrix, sourceButton, desnitationButton);
@@ -309,7 +367,6 @@ namespace CoVuaGame
                     desnitationButton = button;
                     Kill(Matrix, sourceButton, desnitationButton);
                     break;
-                
             }
         }
 
