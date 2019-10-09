@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bishop.cs" />
+    <Compile Include="ChangeToChess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeToChess.Designer.cs">
+      <DependentUpon>ChangeToChess.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChessPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,7 @@
       <DependentUpon>ChessPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneralMethods.cs" />
+    <Compile Include="InfoStack.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="LinkedListCoVua.cs" />
@@ -64,6 +71,9 @@
     <Compile Include="Rook.cs" />
     <Compile Include="StackCoVua.cs" />
     <Compile Include="Trooper.cs" />
+    <EmbeddedResource Include="ChangeToChess.resx">
+      <DependentUpon>ChangeToChess.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChessPanel.resx">
       <DependentUpon>ChessPanel.cs</DependentUpon>
     </EmbeddedResource>

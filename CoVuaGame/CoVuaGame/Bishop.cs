@@ -12,54 +12,120 @@ namespace CoVuaGame
     {
         public void CanMove(List<List<Button>> Matrix, Point point)
         {
-            int i=1;
-            //cheo chinh
-            while (i<=7)// sang trai tren
+            int i;
+            for (i = 1; i <=7; i++)//len phai
             {
-                if (point.X + i <= 7 && point.Y + i <= 7)
-                {
-                    if (Matrix[point.X + i][point.Y + i].Name == "NULL")
-                    {
-                        //Manager.stackButton.Push(Matrix[point.X + i][point.Y + i], point.X + i, point.Y + i);
-
-                        Matrix[point.X + i][point.Y + i].BackColor = Color.LightBlue;
-                        Matrix[point.X + i][point.Y + i].Name = "A";
-          
-                    }
-                }
-                if (point.X - i >= 0 && point.Y - i >= 0)
-                {
-                    if (Matrix[point.X - i][point.Y - i].Name == "NULL")
-                    {
-                        //Manager.stackButton.Push(Matrix[point.X - i][point.Y - i], point.X - i, point.Y - i);
-
-                        Matrix[point.X - i][point.Y - i].BackColor = Color.LightBlue;
-                        Matrix[point.X - i][point.Y - i].Name = "A";
-              
-                    }
-                }
-                if (point.X + i <= 7 && point.Y - i >= 0)
-                {
-                    if (Matrix[point.X + i][point.Y - i].Name == "NULL")
-                    {
-                        //Manager.stackButton.Push(Matrix[point.X + i][point.Y - i], point.X + i, point.Y - i);
-
-                        Matrix[point.X + i][point.Y - i].BackColor = Color.LightBlue;
-                        Matrix[point.X + i][point.Y - i].Name = "A";
-                    }
-                }
                 if (point.X - i >= 0 && point.Y + i <= 7)
                 {
                     if (Matrix[point.X - i][point.Y + i].Name == "NULL")
                     {
-                        //Manager.stackButton.Push(Matrix[point.X - i][point.Y + i], point.X - i, point.Y + i);
+                        InfoStack info = new InfoStack(Matrix[point.X - i][point.Y + i].BackColor, Matrix[point.X - i][point.Y + i].Name, point.X - i, point.Y + i);
+
+                        Manager.stackInfo.Push(info);
 
                         Matrix[point.X - i][point.Y + i].BackColor = Color.LightBlue;
                         Matrix[point.X - i][point.Y + i].Name = "A";
                     }
+                    else if (IsTeamMate(Matrix[point.X][point.Y].Name, Matrix[point.X - i][point.Y + i].Name) == false)
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X - i][point.Y + i].BackColor, Matrix[point.X - i][point.Y + i].Name, point.X - i, point.Y + i);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X - i][point.Y + i].BackColor = Color.Red;
+                        Matrix[point.X - i][point.Y + i].Name = "K";
+
+                        i = 8;
+                    }
+                    else { i = 8; }
                 }
-                i++;
+                else break;
+            }
+            for (i = 1; i <= 7; i++)// xuong phai
+            {
+                if (point.X + i <= 7 && point.Y + i <=7)
+                {
+                    if (Matrix[point.X + i][point.Y + i].Name == "NULL")
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X + i][point.Y + i].BackColor, Matrix[point.X + i][point.Y + i].Name, point.X + i, point.Y + i);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X + i][point.Y + i].BackColor = Color.LightBlue;
+                        Matrix[point.X + i][point.Y + i].Name = "A";
+                    }
+                    else if (IsTeamMate(Matrix[point.X][point.Y].Name, Matrix[point.X + i][point.Y + i].Name) == false)
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X + i][point.Y + i].BackColor, Matrix[point.X + i][point.Y + i].Name, point.X + i, point.Y + i);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X + i][point.Y + i].BackColor = Color.Red;
+                        Matrix[point.X + i][point.Y + i].Name = "K";
+
+                        i = 8;
+                    }
+                    else { i = 8; }
+                }
+                else break;
+            }
+            for (i = 1; i <= 7; i++)//Xuong Trai
+            {
+                if (point.X + i <= 7 && point.Y - i >= 0)
+                {
+                    if (Matrix[point.X + i][point.Y - i].Name == "NULL")
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X + i][point.Y - i].BackColor, Matrix[point.X + i][point.Y - i].Name, point.X + i, point.Y - i);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X + i][point.Y - i].BackColor = Color.LightBlue;
+                        Matrix[point.X + i][point.Y - i].Name = "A";
+                    }
+                    else if (IsTeamMate(Matrix[point.X][point.Y].Name, Matrix[point.X + i][point.Y - i].Name) == false)
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X + i][point.Y - i].BackColor, Matrix[point.X + i][point.Y - i].Name, point.X + i, point.Y - i);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X + i][point.Y - i].BackColor = Color.Red;
+                        Matrix[point.X + i][point.Y - i].Name = "K";
+
+                        i = 8;
+                    }
+                    else { i = 8; }
+                }
+                else break;
+            }
+            for (i = 1; i <= 7; i++)// Len trai
+            {
+                if (point.X - i >= 0 && point.Y - i >= 0)
+                {
+                    if (Matrix[point.X - i][point.Y - i].Name == "NULL")
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X - i][point.Y - i].BackColor, Matrix[point.X - i][point.Y - i].Name, point.X - i, point.Y - i);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X - i][point.Y - i].BackColor = Color.LightBlue;
+                        Matrix[point.X - i][point.Y - i].Name = "A";
+                    }
+                    else if (IsTeamMate(Matrix[point.X][point.Y].Name, Matrix[point.X - i][point.Y - i].Name) == false)
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X - i][point.Y - i].BackColor, Matrix[point.X - i][point.Y - i].Name, point.X - i, point.Y - i);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X - i][point.Y - i].BackColor = Color.Red;
+                        Matrix[point.X - i][point.Y - i].Name = "K";
+
+                        i = 8;
+                    }
+                    else { i = 8; }
+                }
+                else break;
             }
         }
     }
 }
+      

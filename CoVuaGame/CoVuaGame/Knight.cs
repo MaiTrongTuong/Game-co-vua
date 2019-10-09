@@ -8,7 +8,7 @@ using System.Windows.Forms;                                //
                                                           //      
 namespace CoVuaGame                                         
 {
-    class Knight
+    class Knight:GeneralMethods
     {
         public void CanMove(List<List<Button>> Matrix, Point point)
         {
@@ -20,8 +20,23 @@ namespace CoVuaGame
                 {
                     if (Matrix[point.X + A[i]][point.Y + B[i]].Name == "NULL")
                     {
+                        InfoStack info = new InfoStack(Matrix[point.X + A[i]][point.Y + B[i]].BackColor,
+                             Matrix[point.X + A[i]][point.Y + B[i]].Name, point.X + A[i], point.Y + B[i]);
+
+                        Manager.stackInfo.Push(info);
+
                         Matrix[point.X + A[i]][point.Y + B[i]].BackColor = Color.LightBlue;
                         Matrix[point.X + A[i]][point.Y + B[i]].Name = "A";
+                    }
+                    else if(IsTeamMate(Matrix[point.X][point.Y].Name, Matrix[point.X + A[i]][point.Y + B[i]].Name)==false)
+                    {
+                        InfoStack info = new InfoStack(Matrix[point.X + A[i]][point.Y + B[i]].BackColor,
+                                Matrix[point.X + A[i]][point.Y + B[i]].Name, point.X + A[i], point.Y + B[i]);
+
+                        Manager.stackInfo.Push(info);
+
+                        Matrix[point.X + A[i]][point.Y + B[i]].BackColor = Color.Red;
+                        Matrix[point.X + A[i]][point.Y + B[i]].Name = "K";
                     }
                 }
             }

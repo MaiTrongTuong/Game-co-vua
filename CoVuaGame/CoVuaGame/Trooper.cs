@@ -31,7 +31,9 @@ namespace CoVuaGame
                 {
                     if (Matrix[i][point.Y].Name == "NULL")
                     {
-                        Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
+                        InfoStack info = new InfoStack(Matrix[i][point.Y].BackColor, Matrix[i][point.Y].Name, i, point.Y);
+
+                        Manager.stackInfo.Push(info);
 
                         Matrix[i][point.Y].BackColor = Color.LightBlue;
                         Matrix[i][point.Y].Name = "A";
@@ -46,7 +48,9 @@ namespace CoVuaGame
                 {
                     if (Matrix[i][point.Y].Name == "NULL")
                     {
-                        Manager.stackButton.Push(Matrix[i][point.Y], i, point.Y);
+                        InfoStack info = new InfoStack(Matrix[i][point.Y].BackColor, Matrix[i][point.Y].Name, i, point.Y);
+
+                        Manager.stackInfo.Push(info);
 
                         Matrix[i][point.Y].BackColor = Color.LightBlue;
                         Matrix[i][point.Y].Name = "A";
@@ -66,6 +70,11 @@ namespace CoVuaGame
                     {
                         if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X - 1][pointSource.Y - 1].Name) == false)
                         {
+                            InfoStack info = new InfoStack(Matrix[pointSource.X - 1][pointSource.Y - 1].BackColor,
+                                Matrix[pointSource.X - 1][pointSource.Y - 1].Name , pointSource.X - 1, pointSource.Y - 1);
+                          
+                            Manager.stackInfo.Push(info);
+
                             Matrix[pointSource.X - 1][pointSource.Y - 1].BackColor = Color.Red;
                             Matrix[pointSource.X - 1][pointSource.Y - 1].Name = "K";
                         }
@@ -75,6 +84,11 @@ namespace CoVuaGame
                 {
                     if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X - 1][pointSource.Y + 1].Name) == false)
                     {
+                        InfoStack info = new InfoStack(Matrix[pointSource.X - 1][pointSource.Y + 1].BackColor,
+                           Matrix[pointSource.X - 1][pointSource.Y + 1].Name, pointSource.X - 1, pointSource.Y + 1);
+
+                        Manager.stackInfo.Push(info);
+
                         Matrix[pointSource.X - 1][pointSource.Y + 1].BackColor = Color.Red;
                         Matrix[pointSource.X - 1][pointSource.Y + 1].Name = "K";
                     }
@@ -88,6 +102,11 @@ namespace CoVuaGame
                     {
                         if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X + 1][pointSource.Y - 1].Name) == false)
                         {
+                            InfoStack info = new InfoStack(Matrix[pointSource.X + 1][pointSource.Y - 1].BackColor,
+                                 Matrix[pointSource.X + 1][pointSource.Y - 1].Name, pointSource.X + 1, pointSource.Y - 1);
+
+                            Manager.stackInfo.Push(info);
+
                             Matrix[pointSource.X + 1][pointSource.Y - 1].BackColor = Color.Red;
                             Matrix[pointSource.X + 1][pointSource.Y - 1].Name = "K";
                         }
@@ -97,6 +116,11 @@ namespace CoVuaGame
                 {
                     if (IsTeamMate(Matrix[pointSource.X][pointSource.Y].Name, Matrix[pointSource.X + 1][pointSource.Y + 1].Name) == false)
                     {
+                        InfoStack info = new InfoStack(Matrix[pointSource.X + 1][pointSource.Y + 1].BackColor,
+                           Matrix[pointSource.X + 1][pointSource.Y + 1].Name, pointSource.X + 1, pointSource.Y + 1);
+                        
+                        Manager.stackInfo.Push(info);
+
                         Matrix[pointSource.X + 1][pointSource.Y + 1].BackColor = Color.Red;
                         Matrix[pointSource.X + 1][pointSource.Y + 1].Name = "K";
                     }

@@ -20,8 +20,21 @@ namespace CoVuaGame
                     {
                         if(Matrix[point.X+i][point.Y+j].Name=="NULL")
                         {
+                            InfoStack info = new InfoStack(Matrix[point.X + i][point.Y + j].BackColor,
+                                Matrix[point.X + i][point.Y + j].Name, point.X + i, point.Y + j);
+                            Manager.stackInfo.Push(info);
+
                             Matrix[point.X + i][point.Y + j].BackColor = Color.LightBlue;
                             Matrix[point.X + i][point.Y + j].Name = "A";
+                        }
+                        else if(IsTeamMate(Matrix[point.X][point.Y].Name, Matrix[point.X + i][point.Y + j].Name)==false)
+                        {
+                            InfoStack info = new InfoStack(Matrix[point.X + i][point.Y + j].BackColor,
+                                Matrix[point.X + i][point.Y + j].Name, point.X + i, point.Y + j);
+                            Manager.stackInfo.Push(info);
+
+                            Matrix[point.X + i][point.Y + j].BackColor = Color.Red;
+                            Matrix[point.X + i][point.Y + j].Name = "K";
                         }
                     }
                   

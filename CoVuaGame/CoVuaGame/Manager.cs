@@ -43,7 +43,7 @@ namespace CoVuaGame
 
         public int buttonColor = 1;
 
-        public static StackCoVua<Button> stackButton = new StackCoVua<Button>();
+        public static Stack<InfoStack> stackInfo = new Stack<InfoStack>();
         #endregion
 
         #region Initialize
@@ -83,6 +83,8 @@ namespace CoVuaGame
                     {
                         button.BackColor = Color.BurlyWood;
                     }
+                    else
+                        button.BackColor = Color.White;
 
                     buttonColor = (buttonColor == 0) ? 1 : 0;
 
@@ -253,6 +255,15 @@ namespace CoVuaGame
 
             string btnName = button.Name;
 
+            while (stackInfo.Count > 0)
+            {
+                InfoStack info = stackInfo.Pop();
+
+                Matrix[info.X][info.Y].BackColor = info.Color;
+                Matrix[info.X][info.Y].Name = info.Name;
+
+            }
+
             MoveButton(button, btnName);
         }
         public void MoveButton(Button button,string NameButton)
@@ -262,16 +273,6 @@ namespace CoVuaGame
                 case "W_T":
                 case "B_T":
                     Trooper t = new Trooper();
-                    while (stackButton.Count > 0)
-                    {
-                        int X = stackButton.X;
-                        int Y = stackButton.Y;
-                        Button btn = stackButton.Pop();
-
-                        Matrix[X][Y].BackColor = btn.BackColor;
-                        Matrix[X][Y].Name = btn.Name;
-
-                    }
                     sourceButton = button;
 
                     Point pointTrooper = GetChess(Matrix, button);
@@ -284,16 +285,6 @@ namespace CoVuaGame
                 case "B_R":
                 case "W_R":
                     Rook r = new Rook();
-                    //while (stackButton.Count > 0)
-                    //{
-                    //    int X = stackButton.X;
-                    //    int Y = stackButton.Y;
-                    //    Button btn = stackButton.Pop();
-
-                    //    Matrix[X][Y].BackColor = btn.BackColor;
-                    //    Matrix[X][Y].Name = btn.Name;
-
-                    //}
                     sourceButton = button;
 
                     Point pointRook = GetChess(Matrix, button);
@@ -304,16 +295,7 @@ namespace CoVuaGame
                 case "W_B":
                 case "B_B":
                     Bishop b = new Bishop();
-                    //while (stackButton.Count > 0)
-                    //{
-                    //    int X = stackButton.X;
-                    //    int Y = stackButton.Y;
-                    //    Button btn = stackButton.Pop();
 
-                    //    Matrix[X][Y].BackColor = btn.BackColor;
-                    //    Matrix[X][Y].Name = btn.Name;
-
-                    //}
                     sourceButton = button;
                     Point pointBishop = GetChess(Matrix, button);
                     b.CanMove(Matrix, pointBishop);
@@ -323,16 +305,7 @@ namespace CoVuaGame
                 case "W_K":
                 case "B_K":
                     King k = new King();
-                    //while (stackButton.Count > 0)
-                    //{
-                    //    int X = stackButton.X;
-                    //    int Y = stackButton.Y;
-                    //    Button btn = stackButton.Pop();
-
-                    //    Matrix[X][Y].BackColor = btn.BackColor;
-                    //    Matrix[X][Y].Name = btn.Name;
-
-                    //}
+               
                     sourceButton = button;
                     Point pointKing = GetChess(Matrix, button);
                     k.CanMove(Matrix, pointKing);
@@ -342,38 +315,19 @@ namespace CoVuaGame
                 case "W_Q":
                 case "B_Q":
                     Queen q = new Queen();
-                    while (stackButton.Count > 0)
-                    {
-                        int X = stackButton.X;
-                        int Y = stackButton.Y;
-                        Button btn = stackButton.Pop();
-
-                        Matrix[X][Y].BackColor = btn.BackColor;
-                        Matrix[X][Y].Name = btn.Name;
-
-                    }
+                   
                     sourceButton = button;
                     Point pointQueen = GetChess(Matrix, button);
                     q.CanMove(Matrix, pointQueen);
-                    // r.CanKill(Matrix, pointRook);
+
                     break;
                 case "W_N":
                 case "B_N":
                     Knight n = new Knight();
-                    //while (stackButton.Count > 0)
-                    //{
-                    //    int X = stackButton.X;
-                    //    int Y = stackButton.Y;
-                    //    Button btn = stackButton.Pop();
-
-                    //    Matrix[X][Y].BackColor = btn.BackColor;
-                    //    Matrix[X][Y].Name = btn.Name;
-
-                    //}
+                
                     sourceButton = button;
                     Point pointKnight = GetChess(Matrix, button);
                     n.CanMove(Matrix, pointKnight);
-                    // r.CanKill(Matrix, pointRook);
                     break;
 
                 case "A":
