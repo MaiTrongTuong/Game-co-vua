@@ -44,6 +44,8 @@ namespace CoVuaGame
         public int buttonColor = 1;
 
         public static Stack<InfoStack> stackInfo = new Stack<InfoStack>();
+
+        public static string TypeChess;
         #endregion
 
         #region Initialize
@@ -127,6 +129,35 @@ namespace CoVuaGame
             ChessBoard.Size = new System.Drawing.Size(PanelWidth, PanelHeight);
         }
 
+        public void SetImage(Button button)
+        {  switch(button.Name)
+            {
+                case "W_Q":
+                    button.BackgroundImage = Properties.Resources.QueenWhite;
+                    break;
+                case "W_R":
+                    button.BackgroundImage = Properties.Resources.RookWhite;
+                    break;
+                case "W_N":
+                    button.BackgroundImage = Properties.Resources.KnightWhite;
+                    break;
+                case "W_B":
+                    button.BackgroundImage = Properties.Resources.BishopWhite;
+                    break;
+                case "B_Q":
+                    button.BackgroundImage = Properties.Resources.Queen;
+                    break;
+                case "B_R":
+                    button.BackgroundImage = Properties.Resources.Rook;
+                    break;
+                case "B_N":
+                    button.BackgroundImage = Properties.Resources.Knight;
+                    break;
+                case "B_B":
+                    button.BackgroundImage = Properties.Resources.Bishop;
+                    break;
+            }
+        }
 
         public void SetImage(Button button, int i, int j)
         {
@@ -234,6 +265,12 @@ namespace CoVuaGame
 
             Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
             Matrix[pointSource.X][pointSource.Y].Name = "NULL";
+
+            //Change chess if that is Trooper
+            if (Matrix[pointDesnitation.X][pointDesnitation.Y].Name.Substring(2, 1) == "T")
+            {
+                ChangeChess(Matrix[pointDesnitation.X][pointDesnitation.Y], pointDesnitation.X);
+            }
         }
 
         public void Kill(List<List<Button>> Matrix, Button btnSource, Button btnDesnitation)
@@ -246,6 +283,12 @@ namespace CoVuaGame
 
             Matrix[pointSource.X][pointSource.Y].BackgroundImage = null;
             Matrix[pointSource.X][pointSource.Y].Name = "NULL";
+
+            //Change chess if that is Trooper
+            if (Matrix[pointDesnitation.X][pointDesnitation.Y].Name.Substring(2, 1) == "T")
+            {
+                ChangeChess(Matrix[pointDesnitation.X][pointDesnitation.Y], pointDesnitation.X);
+            }
         }
 
 
@@ -266,6 +309,23 @@ namespace CoVuaGame
 
             MoveButton(button, btnName);
         }
+
+        public void ChangeChess(Button button,int Location_X)
+        {
+            if (Location_X == 0 || Location_X == 7)
+            {
+                TypeChess = button.Name.Substring(0, 1);
+                Form changeChess = new ChangeToChess();
+                if(changeChess.ShowDialog()==DialogResult.OK)
+                {
+                    button.Name = TypeChess;
+                    SetImage(button);
+
+                    TypeChess = "";
+                }
+            }
+        }
+
         public void MoveButton(Button button,string NameButton)
         {
             switch(NameButton)
@@ -276,8 +336,7 @@ namespace CoVuaGame
                     sourceButton = button;
 
                     Point pointTrooper = GetChess(Matrix, button);
-                    if (pointTrooper.X == 0 || pointTrooper.X == 7)
-                        break;
+          
                     t.CanMove(Matrix, pointTrooper);
                     t.CanKill(Matrix, pointTrooper);
                     break;

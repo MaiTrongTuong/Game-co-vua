@@ -45,6 +45,7 @@
             this.ClientSize = new System.Drawing.Size(1238, 723);
             this.Controls.Add(this.PanelChessBoard);
             this.Name = "ChessPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChessPanel";
             this.Load += new System.EventHandler(this.ChessPanel_Load);
             this.ResumeLayout(false);
