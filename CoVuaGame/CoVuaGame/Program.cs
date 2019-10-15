@@ -16,7 +16,7 @@ namespace CoVuaGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChessPanel());
+            Application.Run(new Form1());
         }
     }
 }
