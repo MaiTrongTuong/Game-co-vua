@@ -10,10 +10,14 @@ using System.Windows.Forms;
 
 namespace CoVuaGame
 {
-    public partial class Form1 : Form
+    public partial class PlayMusic : Form
     {
         private Mp3Player mp3Player = new Mp3Player();
-        public Form1()
+        private bool isPlay = false;
+
+        public static bool isOpenForm = false;
+
+        public PlayMusic()
         {
             InitializeComponent();
         }
@@ -33,6 +37,21 @@ namespace CoVuaGame
         private void button3_Click(object sender, EventArgs e)
         {
             mp3Player.play();
+            Button button = sender as Button;
+            if (isPlay==false)
+            {
+                mp3Player.play();
+
+                button.BackgroundImage = Properties.Resources.Pause;
+                isPlay = true;
+            }
+            else
+            {
+                mp3Player.pause();
+
+                button.BackgroundImage = Properties.Resources.Stop;
+                isPlay = false;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -42,10 +61,16 @@ namespace CoVuaGame
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            isOpenForm = false;
+            this.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
 
         }

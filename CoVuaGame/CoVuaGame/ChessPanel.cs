@@ -15,6 +15,8 @@ namespace CoVuaGame
         #region Properties
         Manager ChessBoard;
 
+        Form music;
+
         #endregion
         public ChessPanel()
         {
@@ -23,6 +25,21 @@ namespace CoVuaGame
             ChessBoard.SizePanel();
             ChessBoard.LocationPanel();
             ChessBoard.DrawPanelChessBoard();
+        }
+
+        private void openMusicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(PlayMusic.isOpenForm==false)
+            {
+                music = new PlayMusic();
+                music.Show();
+                PlayMusic.isOpenForm = true;
+            }
+            else
+            {
+                music.Show();
+                music.MaximizeBox = true;
+            }         
         }
 
         private void ChessPanel_Load(object sender, EventArgs e)

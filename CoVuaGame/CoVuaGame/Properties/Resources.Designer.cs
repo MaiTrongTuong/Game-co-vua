@@ -83,6 +83,16 @@ namespace CoVuaGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Folder {
+            get {
+                object obj = ResourceManager.GetObject("Folder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap King {
             get {
                 object obj = ResourceManager.GetObject("King", resourceCulture);
@@ -123,6 +133,56 @@ namespace CoVuaGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Next {
+            get {
+                object obj = ResourceManager.GetObject("Next", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pause {
+            get {
+                object obj = ResourceManager.GetObject("Pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Play {
+            get {
+                object obj = ResourceManager.GetObject("Play", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Previous {
+            get {
+                object obj = ResourceManager.GetObject("Previous", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Previous1 {
+            get {
+                object obj = ResourceManager.GetObject("Previous1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Queen {
             get {
                 object obj = ResourceManager.GetObject("Queen", resourceCulture);
@@ -156,6 +216,16 @@ namespace CoVuaGame.Properties {
         internal static System.Drawing.Bitmap RookWhite {
             get {
                 object obj = ResourceManager.GetObject("RookWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Stop {
+            get {
+                object obj = ResourceManager.GetObject("Stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

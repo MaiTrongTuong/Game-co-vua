@@ -59,11 +59,11 @@
     <Compile Include="ChessPanel.Designer.cs">
       <DependentUpon>ChessPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="PlayMusic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="PlayMusic.designer.cs">
+      <DependentUpon>PlayMusic.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneralMethods.cs" />
     <Compile Include="InfoStack.cs" />
@@ -84,8 +84,8 @@
     <EmbeddedResource Include="ChessPanel.resx">
       <DependentUpon>ChessPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="PlayMusic.resx">
+      <DependentUpon>PlayMusic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -145,6 +145,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TrooperWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Previous1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Folder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

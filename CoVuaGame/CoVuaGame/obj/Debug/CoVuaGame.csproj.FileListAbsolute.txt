@@ -19,4 +19,4 @@ E:\CNTT\OOP_DOAN\Game-co-vua\CoVuaGame\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug
 E:\CNTT\OOP_DOAN\Game-co-vua\CoVuaGame\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.exe
 E:\CNTT\OOP_DOAN\Game-co-vua\CoVuaGame\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.pdb
 C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.ChangeToChess.resources
-C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.Form1.resources
+C:\Users\tuong be de\Desktop\Game-co-vua\CoVuaGame\CoVuaGame\obj\Debug\CoVuaGame.PlayMusic.resources

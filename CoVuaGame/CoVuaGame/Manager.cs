@@ -13,6 +13,7 @@ namespace CoVuaGame
     {
         #region Properties
         private Panel chessBoard;
+
         public Panel ChessBoard
         {
             get { return chessBoard; }
@@ -39,6 +40,13 @@ namespace CoVuaGame
         {
             set { panelHeight = value; }
             get { return panelHeight; }
+        }
+
+        private string currentPlayer = "W";
+        public string CurrentPlayer
+        {
+            get { return currentPlayer; }
+            set { currentPlayer = value; }
         }
 
         public int buttonColor = 1;
@@ -109,7 +117,7 @@ namespace CoVuaGame
 
         public void LocationPanel()
         {
-            ChessBoard.Location = new Point(100, 20);
+            ChessBoard.Location = new Point(280, 40);
         }
 
         private Point GetChess(List<List<Button>> Matrix, Button button)
@@ -296,18 +304,42 @@ namespace CoVuaGame
         {
             Button button = sender as Button;
 
-            string btnName = button.Name;
-
-            while (stackInfo.Count > 0)
+            if (button.Name.Substring(0, 1) == CurrentPlayer)
             {
-                InfoStack info = stackInfo.Pop();
 
-                Matrix[info.X][info.Y].BackColor = info.Color;
-                Matrix[info.X][info.Y].Name = info.Name;
+                string btnName = button.Name;
+                while (stackInfo.Count > 0)
+                {
+                    InfoStack info = stackInfo.Pop();
 
+                    Matrix[info.X][info.Y].BackColor = info.Color;
+                    Matrix[info.X][info.Y].Name = info.Name;
+
+                }
+
+                MoveButton(button, btnName);
             }
+            else if ((button.Name == "A") || (button.Name == "K"))
+            {
+                string btnName = button.Name;
+                while (stackInfo.Count > 0)
+                {
+                    InfoStack info = stackInfo.Pop();
 
-            MoveButton(button, btnName);
+                    Matrix[info.X][info.Y].BackColor = info.Color;
+                    Matrix[info.X][info.Y].Name = info.Name;
+
+                }
+
+                MoveButton(button, btnName);
+
+                ChangePlayer();
+            }
+        }
+
+        public void ChangePlayer()
+        {
+            CurrentPlayer = (CurrentPlayer == "W") ? "B" : "W";
         }
 
         public void ChangeChess(Button button,int Location_X)

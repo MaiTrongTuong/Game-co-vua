@@ -29,5 +29,10 @@ namespace CoVuaGame
             string command = "stop MediaFile";
             mciSendString(command, null, 0, 0);
         }
+        public void pause()
+        {
+            string command = "pause MediaFile";
+            mciSendString(command, null, 0, 0);
+        }
     }
 }
