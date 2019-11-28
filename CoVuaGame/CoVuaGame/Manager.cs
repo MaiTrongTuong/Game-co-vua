@@ -13,13 +13,25 @@ namespace CoVuaGame
     {
         #region Properties
         private Panel chessBoard;
-
         public Panel ChessBoard
         {
             get { return chessBoard; }
             set { chessBoard = value; }
         }
 
+        private Panel pnlPlayer1;
+        public Panel PnlPlayer1
+        {
+            get { return pnlPlayer1; }
+            set { pnlPlayer1 = value; }
+        }
+
+        private Panel pnlPlayer2;
+        public Panel PnlPlayer2
+        {
+            get { return pnlPlayer2; }
+            set { pnlPlayer2 = value; }
+        }
 
         private List<List<Button>> matrix;
         public List<List<Button>> Matrix
@@ -54,12 +66,19 @@ namespace CoVuaGame
         public static Stack<InfoStack> stackInfo = new Stack<InfoStack>();
 
         public static string TypeChess;
+
+        //Kiểm xoát tọa độ thêm ảnh của 2 panel
+        private Point pointP1 = new Point(0, 0);
+        private Point pointP2 = new Point(0, 0);
+        private Point CurrentPoint;
         #endregion
 
         #region Initialize
-        public Manager(Panel chessBoard)
+        public Manager(Panel chessBoard, Panel pnlEr1, Panel pnlEr2)
         {
             this.ChessBoard = chessBoard;
+            this.PnlPlayer1 = pnlEr1;
+            this.PnlPlayer2 = pnlEr2;
         }
         public Button sourceButton;
         public Button desnitationButton;
@@ -426,12 +445,55 @@ namespace CoVuaGame
                     Move(Matrix, sourceButton, desnitationButton);
                     break;
                 case "K":
+                    //Gán đích chuẩn bị thay thế
                     desnitationButton = button;
+                    //Lấy ảnh đưa vào panel
+                    if(button.Name.Substring(0,1)=="W")
+                    {
+                        CurrentPoint = pointP2;
+                    }
+                    else
+                    {
+                        CurrentPoint = pointP1;
+                    }
+                    PictureBox picture = new PictureBox()
+                    {
+                        Width = 50,
+                        Height = 50,
+                        BackgroundImage = button.BackgroundImage,
+                        Location = new Point(CurrentPoint.X, CurrentPoint.Y),
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        BorderStyle = BorderStyle.Fixed3D,
+                        Name = button.Name
+                       };
+                    if (picture.Name.Substring(0,1)=="B")
+                    {
+                        PnlPlayer1.Controls.Add(picture);
+                        IncreaseLocation(ref pointP1);
+                    }
+                    else
+                    {
+                        PnlPlayer2.Controls.Add(picture);
+                        IncreaseLocation(ref pointP2);
+                    }
                     Kill(Matrix, sourceButton, desnitationButton);
                     break;
+            }      
+        }
+        private void IncreaseLocation(ref Point point)
+        {
+            if(point.X >=150)
+            {
+                point.X = 0;
+                point.Y += 50;
             }
+            else
+            {
+                point.X += 50;
+            }
+   
         }
 
-            #endregion
+        #endregion
     }
 }

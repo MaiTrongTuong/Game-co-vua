@@ -18,7 +18,7 @@ namespace CoVuaGame
            
         }
 
-        public void CanMove(List<List<Button>> Matrix, Point point)
+        public new void CanMove(List<List<Button>> Matrix, Point point)
         {
             if ((point.X == 6 && Matrix[point.X][point.Y].Name == "W_T")|| (point.X == 1 && Matrix[point.X][point.Y].Name == "B_T"))
                 isFirstMove = 2;

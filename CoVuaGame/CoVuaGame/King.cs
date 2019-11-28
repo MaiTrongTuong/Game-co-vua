@@ -10,7 +10,7 @@ namespace CoVuaGame
 {
     class King : GeneralMethods
     {
-        public void CanMove(List<List<Button>> Matrix, Point point)
+        public new void CanMove(List<List<Button>> Matrix, Point point)
         {
             for (int i = 1; i >=-1; i--)
             {

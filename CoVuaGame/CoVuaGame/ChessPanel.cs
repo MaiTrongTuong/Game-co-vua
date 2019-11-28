@@ -21,7 +21,7 @@ namespace CoVuaGame
         public ChessPanel()
         {
             InitializeComponent();
-            ChessBoard = new Manager(PanelChessBoard);
+            ChessBoard = new Manager(PanelChessBoard,pnlFirstPlayer, pnlSecondPlayer);
             ChessBoard.SizePanel();
             ChessBoard.LocationPanel();
             ChessBoard.DrawPanelChessBoard();
