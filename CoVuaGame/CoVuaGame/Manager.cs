@@ -63,7 +63,7 @@ namespace CoVuaGame
 
         public int buttonColor = 1;
 
-        public static Stack<InfoStack> stackInfo = new Stack<InfoStack>();
+        public static Stack<InfoStack> stackInfo = new Stack<InfoStack>();jyd
 
         public static string TypeChess;
 
